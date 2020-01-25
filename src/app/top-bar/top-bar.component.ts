@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-top-bar',
@@ -6,10 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
+  title = 'default';
 
-  constructor() { }
+  constructor(private http: HttpClient) { 
+    this.http.get('assets/shipping.json').subscribe((data: Object) => {
+      //console.log(data);
+      //let retobj = JSON.parse(data[0]);
+      //console.log(retobj);
+
+      this.title =data[0].type;
+    });
+    
+  }
 
   ngOnInit() {
+  }
+
+  onCheckOut(){
+    alert('checkout clicked !');
   }
 
 }

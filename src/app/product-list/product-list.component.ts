@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { products } from '../products';
 
@@ -8,11 +9,20 @@ import { products } from '../products';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  products = products;
+  
+  users = [];
+  constructor(private http: HttpClient) { 
+
+    this.http.get('https://jsonplaceholder.typicode.com/users').subscribe((data: Object[]) => {
+      this.users = data;
+    });
+   }
+
 
   share() {
-    window.alert('The product has been shared!');
+    window.alert('shared OK');
   }
+
 }
 
 

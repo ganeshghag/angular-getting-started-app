@@ -1,15 +1,21 @@
-<h2>Products</h2>
+<h2>All Users</h2>
 
-<div *ngFor="let product of products">
+<div *ngFor="let user1 of users">
 
   <h3>
-    <a [title]="product.name + ' details'">
-      {{ product.name }}
+    <a [title]="user1.username + ' details'">
+      {{ user1.name }}
     </a>
   </h3>
 
-  <p *ngIf="product.description">
-    Description: {{ product.description }}
+  <p *ngIf="user1.email">
+    Contact: {{ user1.email }} <br>
+    Phone: {{user1.phone}}
+  </p>
+
+  <p *ngIf="user1.website">
+    Address: <br>{{user1.address.street}},<br>{{user1.address.suite}},<br>{{user1.address.city}},<br>{{user1.address.zipcode}} <br>
+    Website: {{ user1.website }}
   </p>
 
   <button (click)="share()">
